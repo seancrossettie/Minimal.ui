@@ -34,7 +34,7 @@ const signInUser = (setUser) => {
           userGoalTier: 0,
           totalItemsOwned: 0,
           totalItemsRemoved: 0,
-          firebaseKey: u?.uid
+          firebaseKey: u?.uid,
       };
       createNewUser(userInfo).then(setUser);
       window.location.href = "/";

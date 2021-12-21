@@ -1,10 +1,11 @@
 import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { Button, Flex, IconButton, useColorMode } from "@chakra-ui/react"
+import { Button, Flex, IconButton, Image, Text, useColorMode } from "@chakra-ui/react";
+import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { signInUser, signOutUser } from "../../helpers/auth";
 
-export const NavBar = ({ user, setUser }) => {
+export const NavBar = ({ user, setUser, photoURL }) => {
     const navigate = useNavigate();
     const { colorMode, toggleColorMode } = useColorMode();
     const isDark = colorMode === "dark";
@@ -12,14 +13,22 @@ export const NavBar = ({ user, setUser }) => {
 
     return (
         <Flex>
+            <Flex pos="fixed" top="1rem" left="1rem" alignSelf="center">
+                <Text alignSelf="center" fontSize="4xl">Minimal</Text>
+            </Flex>
             <Flex pos="fixed" top="1rem" right="1rem" align="center">
-                <Flex display={["none", "none", "flex", "fle"]}>
+                <Flex display={["none", "none", "flex", "flex"]}>
                     <Button variant="ghost" m={2} onClick={() => navigate('/')}>Home</Button>
                     <Button variant="ghost" m={2} onClick={() => navigate('/items')}>Items</Button>
                     <Button variant="ghost" m={2} onClick={() => navigate('/categories')}>Categories</Button>
                     { user
-                        ? <Button variant="ghost" m={2} outline onClick={() => signOutUser()}>Sign Out</Button>
-                        : <Button variant="ghost" m={2} outline onClick={() => signInUser(setUser)}>Sign In</Button>
+                        ? <>
+                            <IconButton variant="ghost" m={2} outline onClick={() => signOutUser()}><BiLogOutCircle /></IconButton>
+                            <IconButton m={2} alignSelf="center" variant="ghost" borderRadius="full" onClick={() => navigate('/items')}>
+                                <Image src={photoURL} borderRadius="full" boxSize="30px" alt={photoURL} />
+                            </IconButton>
+                          </>
+                        : <Button variant="ghost" m={2} outline onClick={() => signInUser(setUser)}><BiLogInCircle/></Button>
                     }
                 </Flex>
                 <IconButton 

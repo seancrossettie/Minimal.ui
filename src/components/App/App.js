@@ -8,12 +8,14 @@ import { NavBar } from '../NavBar/NavBar';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [photoURL, setPhotoURL] = useState("");
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((authed) => {
       if (authed) {
         authed.getIdToken().then((token) => sessionStorage.setItem("token", token));
         getUserByFirebaseKey(authed.multiFactor.user.uid).then(setUser);
+        setPhotoURL(authed.photoURL);
       } else {
         setUser(false);
       }
@@ -22,8 +24,8 @@ function App() {
 
   return (
     <>
-      <NavBar user={user} setUser={setUser} />
-      <Router user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser} photoURL={photoURL} />
+      <Router user={user} setUser={setUser} photoURL={photoURL} />
     </>
   );
 }
