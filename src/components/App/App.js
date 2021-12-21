@@ -4,6 +4,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { getUserByFirebaseKey } from "../../helpers/data/userData";
 import Router from "../../helpers/Router";
+import { NavBar } from '../NavBar/NavBar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,9 +21,10 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <>
+      <NavBar user={user} setUser={setUser} />
       <Router user={user} setUser={setUser} />
-    </div>
+    </>
   );
 }
 
