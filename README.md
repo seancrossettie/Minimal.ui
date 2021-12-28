@@ -10,3 +10,4 @@ The frontend of Minimal is a React App bootstrapped with ```create-react-app``` 
 - React Router
 - Firebase Auth
 - Moment.js
+- PatternFly React Charts
