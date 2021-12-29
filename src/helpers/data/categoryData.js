@@ -6,4 +6,9 @@ const getUserCategories = (userId) => new Promise((resolve, reject) => {
     .then(response => resolve(response.data)).catch(reject);
 });
 
-export default getUserCategories;
+const createCategory = (category) => new Promise((resolve, reject) => {
+    axios.post(`${config.baseUrl}/api/categories/createCategory`, category)
+    .then(response => resolve(response.data)).catch(reject);
+})
+
+export { getUserCategories, createCategory };

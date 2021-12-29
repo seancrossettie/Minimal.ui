@@ -6,4 +6,14 @@ const getAllItems = () => new Promise((resolve, reject) => {
     .then(response => resolve(response.data)).catch(reject);
 });
 
-export default getAllItems;
+const getUserItems = (userId) => new Promise((resolve, reject) => {
+    axios.get(`${config.baseUrl}/api/items/getItemsByUserId/${userId}`)
+    .then(response => resolve(response.data)).catch(reject);
+});
+
+const createNewItem = (item) => new Promise((resolve, reject) => {
+    axios.post(`${config.baseUrl}/api/items/createItem`, item)
+    .then(response => resolve(response.data)).catch(reject);
+});
+
+export { getAllItems, getUserItems, createNewItem };

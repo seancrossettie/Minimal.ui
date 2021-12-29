@@ -8,7 +8,7 @@ import { HomePage } from "../views/HomePage";
 import LoginPage from "../views/LoginPage";
 import { NotFound } from "../views/NotFound";
 
-function Router({ user, setUser, phoroURL, userCategories, setUserCategories }) {
+function Router({ user, setUser, phoroURL, userCategories, setUserCategories, userItems, setUserItems }) {
     return (
         <Routes>
             <Route path="/login" element={<LoginPage user={user} setUser={setUser} />} />
@@ -17,9 +17,11 @@ function Router({ user, setUser, phoroURL, userCategories, setUserCategories }) 
                 element={
                      <PrivateRoute>
                         <HomePage 
-                            user={user} 
+                            user={user}
                             userCategories={userCategories}
                             setUserCategories={setUserCategories}
+                            userItems={userItems}
+                            setUserItems={setUserItems}
                         />
                     </PrivateRoute>
                 }
