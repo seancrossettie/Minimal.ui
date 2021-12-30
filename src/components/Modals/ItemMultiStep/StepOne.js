@@ -24,7 +24,7 @@ export const StepOne = ({ handleInputChange, item, setItem, userCategories }) =>
                             <option value={category.categoryId} key={category.categoryId}>{category.categoryName}</option>
                         ))
                         }
-                        <option value="">none</option>
+                        <option value="">None</option>
                     </Select> 
                     <Text marginTop={"2px"} mb={"8px"}>Do you have more than one of this item?</Text>
                     <Checkbox onChange={e => handleIsDuplicate(e)} name="isDuplicate" defaultChecked={item.isDuplicate} marginBottom={item.isDuplicate ? "1rem" : ""}>Yes</Checkbox>

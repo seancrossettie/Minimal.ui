@@ -23,7 +23,6 @@ const CategoriesList = ({ userCategories, setUserCategories, user, setUserItems 
                 setUserItems={setUserItems}
                 userCategories={userCategories}
             />
-            <Button onClick={() => console.warn(userCategories)}>Test</Button>
         </VStack>
     )
 };

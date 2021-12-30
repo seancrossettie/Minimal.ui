@@ -2,6 +2,7 @@ import { AddIcon } from '@chakra-ui/icons';
 import { Button, ButtonGroup, Flex, Modal, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import React, { useState } from 'react'
+import { createNewItem, getUserItems } from '../../../helpers/data/itemData';
 import { StepOne } from './StepOne';
 import { StepThree } from './StepThree';
 import { StepTwo } from './StepTwo';
@@ -17,6 +18,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
         isRemoved: false,
         necessityRank: 0
     });
+    const [itemRank, setItemRank] = useState(0);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { nextStep, prevStep, reset, activeStep } = useSteps({
@@ -33,6 +35,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
 
     const handleStepButton = () => {
         if (activeStep === 2) {
+            createNewItem(item).then(() => getUserItems(user.userId).then(setUserItems));
             onClose();
             reset();
         } else {
@@ -60,7 +63,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                         :""
                     }
                     {activeStep === 1 
-                        ? <StepTwo handleInputChange={handleInputChange} item={item} />
+                        ? <StepTwo handleInputChange={handleInputChange} item={item} itemRank={itemRank} setItemRank={setItemRank} />
                         :""
                     }
                     {activeStep === 2
