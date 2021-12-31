@@ -1,4 +1,4 @@
-import { Input, InputGroup, ModalBody, Text } from '@chakra-ui/react';
+import { InputGroup, ModalBody, Select, Text } from '@chakra-ui/react';
 import React from 'react'
 
 export const StepThree = ({ handleInputChange }) => {
@@ -6,10 +6,39 @@ export const StepThree = ({ handleInputChange }) => {
         <>
             <ModalBody>
                 <InputGroup display={"flex"} flexDir={"column"}>
-                    <Text marginTop={"2px"} mb={"8px"}>Step Three</Text>
-                    <Input onChange={handleInputChange} name="categoryName" marginBottom={"2rem"} placeholder="Name" variant="outline" />
-                    <Text marginTop={"2px"} mb={"8px"}>Give a brief description</Text>
-                    <Input onChange={handleInputChange} name="categoryDescription" placeholder="Description" variant="outline" />
+                    <Text fontSize={"2xl"} mb="1rem">On a scale from 1 to 5...</Text>
+                    <Text marginTop={"2px"} mb={"8px"}>How sentimental is this item?</Text>
+                    <Select isAttached variant="outline" mb="2rem">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Select>
+                    <Text marginTop={"2px"} mb={"8px"}>How vital is this item to your work?</Text>
+                    <Select isAttached variant="outline" mb="2rem">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Select>
+                    <Text marginTop={"2px"} mb={"8px"}>How much would you miss this item?</Text>
+                    <Select isAttached variant="outline" mb="2rem">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Select>
+                    <Text marginTop={"2px"} mb={"8px"}>How important is this to you happiness?</Text>
+                    <Select isAttached variant="outline" mb="2rem">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Select>
                 </InputGroup>
             </ModalBody>
         </>

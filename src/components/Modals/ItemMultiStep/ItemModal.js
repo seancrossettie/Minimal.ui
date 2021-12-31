@@ -19,7 +19,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
         necessityRank: 0
     });
     const [timesUsed, setTimesUsed] = useState(0);
-    const [rememberValue, setRememberValue] = useState(0);
+    const [rememberValue, setRememberValue] = useState("0");
     const [itemRank, setItemRank] = useState(0);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { nextStep, prevStep, reset, activeStep } = useSteps({
@@ -27,7 +27,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
     });
     const steps = [{ label: "Step 1" }, { label: "Step 2" }, { label: "Step 3" }]
 
-    const handleRankUpdate = () => {
+    const handleRankUpdate = (e) => {
         setItemRank(itemRank => itemRank = timesUsed + Number(rememberValue));
     };
 
@@ -45,7 +45,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
             reset();
         } else {
             nextStep();
-            handleRankUpdate();
+            
         }
     };
 

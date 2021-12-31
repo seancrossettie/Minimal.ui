@@ -16,8 +16,8 @@ export const StepTwo = ({
 }) => {
     const [practicalBool, setPracticalBool] = useState(0);
 
-    const handleTimesUsed = () => {
-        setTimesUsed(Math.abs(differenceInWeeks(parseISO(item.timeOwned), parseISO(moment(new Date()).format("YYYY-MM-DD")))));
+    const handleTimesUsed = (e) => {
+        setTimesUsed(Math.abs(differenceInWeeks(parseISO(item.timeOwned), parseISO(moment(new Date()).format("YYYY-MM-DD"))))*e.target.value);
     };
 
     return (
@@ -39,7 +39,7 @@ export const StepTwo = ({
                         ?
                         <>
                             <Text marginTop={"2px"} mb={"8px"}>How many time a week do you use this item?</Text>
-                            <Input name="timesAWeek" type="number" onChange={handleTimesUsed} marginBottom={"2rem"} variant="outline" />
+                            <Input name="timesAWeek" type="number" onChange={e => handleTimesUsed(e)} marginBottom={"2rem"} variant="outline" />
                         </>
                         : ""
                     }
