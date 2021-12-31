@@ -8,7 +8,7 @@ const LoginPage = ({ user }) => {
     const navigate = useNavigate();
     return (
         <Flex flexDir="column" align="center" marginTop={["6rem","15rem"]} marginLeft={["2rem", "none"]}>
-            <Text fontSize={"6xl"}>Welcome to Minimal</Text>
+            <Text fontSize={["6xl"]}>Welcome to Minimal</Text>
             <Text fontSize="xl">Sometimes, less is more. Get started with Minimal today.</Text>
             <Button 
                 marginTop={"1rem"} 

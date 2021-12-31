@@ -13,7 +13,7 @@ const NavBar = ({ user, setUser, photoURL }) => {
     const bg = useColorModeValue("white", "gray.800");
 
     return (
-        <Flex>
+        <Flex bgColor={bg}>
             <Flex pos="fixed" top="1rem" left="2rem" alignSelf="center">
                 <Text alignSelf="center" fontSize="4xl">Minimal</Text>
             </Flex>
@@ -24,10 +24,10 @@ const NavBar = ({ user, setUser, photoURL }) => {
                     <Button variant="ghost" m={2} onClick={() => navigate('/categories')}>Categories</Button>
                     { user
                         ? <>
-                            <IconButton variant="ghost" m={2} outline onClick={() => signOutUser()}><BiLogOutCircle /></IconButton>
                             <IconButton m={2} alignSelf="center" variant="ghost" borderRadius="full" onClick={() => navigate('/profile')}>
                                 <Image src={photoURL} borderRadius="full" boxSize="30px" alt={photoURL} />
                             </IconButton>
+                            <IconButton variant="ghost" m={2} outline onClick={() => signOutUser()}><BiLogOutCircle /></IconButton>
                           </>
                         : <Button variant="ghost" m={2} outline onClick={() => signInUser(setUser)}><BiLogInCircle/></Button>
                     }
@@ -41,17 +41,17 @@ const NavBar = ({ user, setUser, photoURL }) => {
                     display={["flex", "flex", "none", "none"]}
                     onClick={() => setDisplay("flex")}
                 />
-                <IconButton m={2} variant="ghost" size="md">
+                <IconButton m={2} variant="ghost" size="md" onClick={toggleColorMode}>
                     { isDark 
-                        ? <SunIcon  onClick={toggleColorMode} />
-                        : <MoonIcon onClick={toggleColorMode} />
+                        ? <SunIcon />
+                        : <MoonIcon />
                     }
                 </IconButton>
             </Flex>
             <LightMode>
                 <Flex
                     width="100vh"
-                    height="100vh"
+                    height="200vh"
                     zIndex={20}
                     bgColor={bg}
                     top="0"
@@ -74,9 +74,10 @@ const NavBar = ({ user, setUser, photoURL }) => {
                         <Button variant="ghost" m={2} onClick={() => { navigate('/'); setDisplay("none"); }}>Home</Button>
                         <Button variant="ghost" m={2}  onClick={() => { navigate('/items'); setDisplay("none"); }}>Items</Button>
                         <Button variant="ghost" m={2}  onClick={() => { navigate('/categories');  setDisplay("none"); }}>Categories</Button>
+                        <Button variant="ghost" m={2}  onClick={() => { navigate('/profile');  setDisplay("none"); }}>Profile</Button>
                         { user
-                            ? <Button variant="ghost" m={2}  outline onClick={() => { signOutUser(); setUser(null); setDisplay("none"); }}>Sign Out</Button>
-                            : <Button variant="ghost" m={2}  outline onClick={() => { signInUser(setUser); setDisplay("none"); }}>Sign In</Button>
+                            ? <Button variant="outline" m={2} onClick={() => { signOutUser(); setDisplay("none"); }}>Sign Out</Button>
+                            : <Button variant="ghost" m={2} onClick={() => { signInUser(setUser); setDisplay("none"); }}>Sign In</Button>
                         }
                     </Flex>
                 </Flex>
