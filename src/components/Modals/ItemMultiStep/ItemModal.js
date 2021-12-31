@@ -18,18 +18,23 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
         isRemoved: false,
         necessityRank: 0
     });
+    const [timesUsed, setTimesUsed] = useState(0);
+    const [rememberValue, setRememberValue] = useState(0);
     const [itemRank, setItemRank] = useState(0);
-
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { nextStep, prevStep, reset, activeStep } = useSteps({
         initialStep: 0,
-      })
+    });
     const steps = [{ label: "Step 1" }, { label: "Step 2" }, { label: "Step 3" }]
+
+    const handleRankUpdate = () => {
+        setItemRank(itemRank => itemRank = timesUsed + Number(rememberValue));
+    };
 
     const handleInputChange = (e) => {
         setItem((prevState) => ({
             ...prevState,
-            [e.target.name]: e.target.value 
+            [e.target.name]: e.target.value
         }));
     };
 
@@ -40,6 +45,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
             reset();
         } else {
             nextStep();
+            handleRankUpdate();
         }
     };
 
@@ -59,12 +65,26 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                         <Text marginTop={"1rem"}>Add a Category</Text>
                     </ModalHeader>
                     {activeStep === 0 
-                        ? <StepOne handleInputChange={handleInputChange} item={item} setItem={setItem} userCategories={userCategories} />
+                        ? <StepOne 
+                            handleInputChange={handleInputChange} 
+                            item={item} 
+                            setItem={setItem} 
+                            userCategories={userCategories} 
+                            />
                         :""
                     }
                     {activeStep === 1 
-                        ? <StepTwo handleInputChange={handleInputChange} item={item} itemRank={itemRank} setItemRank={setItemRank} />
-                        :""
+                        ? <StepTwo 
+                            handleInputChange={handleInputChange} 
+                            item={item} 
+                            itemRank={itemRank} 
+                            setItemRank={setItemRank} 
+                            timesUsed={timesUsed} 
+                            setTimesUsed={setTimesUsed}
+                            rememberValue={rememberValue}
+                            setRememberValue={setRememberValue} 
+                            handleRankUpdate={handleRankUpdate} />
+                        : ""
                     }
                     {activeStep === 2
                         ? <StepThree handleInputChange={handleInputChange} item={item} />
@@ -82,7 +102,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                             <Button variant="outline" color={"teal.400"} onClick={e => handleStepButton(e)}>
                                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
                             </Button>
-                            <Button onClick={() => console.warn(item)}>Test</Button>
+                            <Button onClick={() => console.warn(timesUsed)}>Test</Button>
                         </ButtonGroup>
                     </ModalFooter>
                 </ModalContent>
