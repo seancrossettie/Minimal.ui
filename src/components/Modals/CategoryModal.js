@@ -29,7 +29,7 @@ const CategoryModal = ({ user, setUserCategories }) => {
     return (
         <Flex width={"70%"}>
             <Button isFullWidth={true} rightIcon={<AddIcon />} variant={"outline"} onClick={onOpen}>Add a Category</Button>
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal size={"xl"} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Add a Category</ModalHeader>

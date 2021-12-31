@@ -6,14 +6,21 @@ import "./styles/index.css"
 import firebaseConfig from "./helpers/apiKeys";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App/App.js";
-import { ChakraProvider } from "@chakra-ui/react";
+import { StepsStyleConfig as Steps } from 'chakra-ui-steps';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 firebase.initializeApp(firebaseConfig);
+
+const theme = extendTheme({
+  components: {
+    Steps,
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
     </BrowserRouter>
