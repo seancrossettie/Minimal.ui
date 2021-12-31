@@ -21,8 +21,7 @@ function Router({ user, setUser, phoroURL, userCategories, setUserCategories, us
                             userCategories={userCategories}
                             setUserCategories={setUserCategories}
                             userItems={userItems}
-                            setUserItems={setUserItems}
-                        />
+                            setUserItems={setUserItems} />
                     </PrivateRoute>
                 }
             />
@@ -30,7 +29,11 @@ function Router({ user, setUser, phoroURL, userCategories, setUserCategories, us
                 path="/items" 
                 element={
                     <PrivateRoute>
-                        <ItemsPage user={user} setUser={setUser} />
+                        <ItemsPage 
+                            user={user}
+                            setUser={setUser}
+                            userItems={userItems}
+                            setUserItems={setUserItems} />
                     </PrivateRoute>
                 }>
             </Route>
@@ -38,7 +41,11 @@ function Router({ user, setUser, phoroURL, userCategories, setUserCategories, us
                 path="/categories" 
                 element={
                     <PrivateRoute>
-                        <CategoriesPage user={user} setUser={setUser} />
+                        <CategoriesPage 
+                            user={user}
+                            setUser={setUser}
+                            userCategories={userCategories}
+                            setUserCategories={setUserCategories} />
                     </PrivateRoute>
                 }>
             </Route>

@@ -16,4 +16,9 @@ const createNewItem = (item) => new Promise((resolve, reject) => {
     .then(response => resolve(response.data)).catch(reject);
 });
 
-export { getAllItems, getUserItems, createNewItem };
+const removeItem = (item) => new Promise((resolve, reject) => {
+    axios.put(`${config.baseUrl}/api/items/removeItem/${item.itemId}`, item)
+    .then(response => resolve(response.data)).catch(reject);
+});
+
+export { getAllItems, getUserItems, createNewItem, removeItem };
