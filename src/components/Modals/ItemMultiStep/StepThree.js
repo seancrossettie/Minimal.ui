@@ -8,7 +8,7 @@ export const StepThree = ({ handleInputChange }) => {
                 <InputGroup display={"flex"} flexDir={"column"}>
                     <Text fontSize={"2xl"} mb="1rem">On a scale from 1 to 5...</Text>
                     <Text marginTop={"2px"} mb={"8px"}>How sentimental is this item?</Text>
-                    <Select isAttached variant="outline" mb="2rem">
+                    <Select variant="outline" mb="2rem">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -16,7 +16,7 @@ export const StepThree = ({ handleInputChange }) => {
                         <option value="5">5</option>
                     </Select>
                     <Text marginTop={"2px"} mb={"8px"}>How vital is this item to your work?</Text>
-                    <Select isAttached variant="outline" mb="2rem">
+                    <Select variant="outline" mb="2rem">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -24,7 +24,7 @@ export const StepThree = ({ handleInputChange }) => {
                         <option value="5">5</option>
                     </Select>
                     <Text marginTop={"2px"} mb={"8px"}>How much would you miss this item?</Text>
-                    <Select isAttached variant="outline" mb="2rem">
+                    <Select variant="outline" mb="2rem">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -32,7 +32,7 @@ export const StepThree = ({ handleInputChange }) => {
                         <option value="5">5</option>
                     </Select>
                     <Text marginTop={"2px"} mb={"8px"}>How important is this to you happiness?</Text>
-                    <Select isAttached variant="outline" mb="2rem">
+                    <Select variant="outline" mb="2rem">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
