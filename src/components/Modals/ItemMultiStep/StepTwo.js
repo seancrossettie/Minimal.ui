@@ -43,14 +43,6 @@ export const StepTwo = ({
                         </>
                         : ""
                     }
-                    <Text marginTop={"2px"} mb={"8px"}>Do you even remember that you owned this?</Text>
-                    <RadioGroup marginBottom={"2rem"} onChange={setRememberValue} direction={"row"}>
-                        <Stack direction={"row"}>
-                            <Radio value={"0"}>Yes</Radio>
-                            <Radio value={"-2"}>No</Radio>
-                        </Stack>
-                    </RadioGroup>
-                    <Button marginBottom={"1rem"} width={"4rem"} onClick={handleRankUpdate}>Save</Button>
                 </InputGroup>
             </ModalBody>
         </>

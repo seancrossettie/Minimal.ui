@@ -2,7 +2,7 @@ import { Flex, Table, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
 import { ItemCard } from "../components/Items/ItemCard";
 
-const ItemsPage = ({ user, setUser, userItems, setUserItems }) => {
+const ItemsPage = ({ user, userItems, setUserItems }) => {
     return (
         <Flex flexDir={"column"} marginTop={["6rem"]} marginLeft={["2rem"]}>
             <Text fontSize="6xl" marginBottom={"2rem"}>My Items</Text>
@@ -10,7 +10,6 @@ const ItemsPage = ({ user, setUser, userItems, setUserItems }) => {
                 <Thead>
                     <Tr>
                         <Th>Name</Th>
-                        <Th>Description</Th>
                         <Th>Category</Th>
                         <Th>Time Owned (weeks)</Th>
                         <Th>Quantity</Th>

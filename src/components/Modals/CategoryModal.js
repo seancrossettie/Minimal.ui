@@ -7,7 +7,6 @@ const CategoryModal = ({ user, setUserCategories }) => {
     const [category, setCategory] = useState({
         userId: user.userId,
         categoryName: "",
-        categoryDescription: "",
         totalCategoryItems: 0,
         totalCategoryItemsRemoved: 0,
     });
@@ -23,7 +22,7 @@ const CategoryModal = ({ user, setUserCategories }) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        createCategory(category).then(() => getUserCategories(category.userId).then(setUserCategories))
+        createCategory(category).then(() => getUserCategories(category.userId).then(setUserCategories));
     };
 
     return (
@@ -37,8 +36,6 @@ const CategoryModal = ({ user, setUserCategories }) => {
                         <InputGroup display={"flex"} flexDir={"column"}>
                             <Text marginTop={"2px"} mb={"8px"}>Name</Text>
                             <Input onChange={handleInputChange} name="categoryName" marginBottom={"2rem"} placeholder="Name" variant="outline" />
-                            <Text marginTop={"2px"} mb={"8px"}>Give a brief description of the category</Text>
-                            <Input onChange={handleInputChange} name="categoryDescription" placeholder="Description" variant="outline" />
                         </InputGroup>
                     </ModalBody>
                     <ModalFooter>

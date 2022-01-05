@@ -1,7 +1,7 @@
 import { AddIcon } from '@chakra-ui/icons';
 import { Button, ButtonGroup, Flex, Modal, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createNewItem, getUserItems } from '../../../helpers/data/itemData';
 import { StepOne } from './StepOne';
 import { StepThree } from './StepThree';
@@ -10,22 +10,34 @@ import { StepTwo } from './StepTwo';
 const ItemModal = ({ user, setUserItems, userCategories }) => {
     const [item, setItem] = useState({
         userId: user.userId,
+        categoryId: "",
         itemName: "",
-        itemDescription: "",
         timeOwned: "",
         quantity: 1,
         isDuplicate: false,
         isRemoved: false,
         necessityRank: 0
     });
+    const [isDisabled, setIsDisabled] = useState(true);
     const [timesUsed, setTimesUsed] = useState(0);
     const [rememberValue, setRememberValue] = useState("0");
     const [itemRank, setItemRank] = useState(0);
+    
+    // Modal Stepping API
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const steps = [{ label: "Step 1" }, { label: "Step 2" }, { label: "Step 3" }]
     const { nextStep, prevStep, reset, activeStep } = useSteps({
         initialStep: 0,
     });
-    const steps = [{ label: "Step 1" }, { label: "Step 2" }, { label: "Step 3" }]
+
+    // Handle isDisabled on modal button
+    useEffect(() => {
+        if (userCategories.length < 1) {
+            setIsDisabled(true);
+        } else {
+            setIsDisabled(false);
+        };
+    }, [userCategories.length]);
 
     const handleRankUpdate = (e) => {
         setItemRank(itemRank => itemRank = timesUsed + Number(rememberValue));
@@ -51,7 +63,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
 
     return (
         <Flex width={"70%"}>
-            <Button isFullWidth={true} rightIcon={<AddIcon />} variant={"outline"} onClick={onOpen}>Add an Item</Button>
+            <Button isDisabled={isDisabled} isFullWidth={true} rightIcon={<AddIcon />} variant={"outline"} onClick={onOpen}>Add an Item</Button>
             <Modal isOpen={isOpen} size="xl" onClose={() => { onClose(); reset(); }}>
                 <ModalOverlay onClick={() => { onClose(); reset(); }} />
                 <ModalContent>
@@ -62,7 +74,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                             </Step>
                             ))}
                         </Steps>
-                        <Text marginTop={"1rem"}>Add a Category</Text>
+                        <Text marginTop={"1rem"}>Add an Item</Text>
                     </ModalHeader>
                     {activeStep === 0 
                         ? <StepOne 

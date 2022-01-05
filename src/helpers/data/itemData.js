@@ -21,4 +21,9 @@ const removeItem = (item) => new Promise((resolve, reject) => {
     .then(response => resolve(response.data)).catch(reject);
 });
 
-export { getAllItems, getUserItems, createNewItem, removeItem };
+const deleteItem = (item) => new Promise((resolve, reject) => {
+   axios.delete(`${config.baseUrl}/api/items/deleteItem/${item.itemId}`) 
+   .then(response => resolve(response.data)).catch(reject);
+});
+
+export { getAllItems, getUserItems, createNewItem, removeItem, deleteItem };
