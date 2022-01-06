@@ -1,56 +1,45 @@
-import { Button, HStack, Input, InputGroup, ModalBody, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react';
-import { differenceInWeeks, parseISO } from "date-fns";
-import moment from "moment";
-import React, { useState } from "react"
+import { InputGroup, ModalBody, Select, Text } from '@chakra-ui/react';
+import React from "react"
 
-export const StepTwo = ({ 
-    handleInputChange, 
-    item, 
-    itemRank, 
-    setItemRank,
-    timesUsed,
-    setTimesUsed,
-    rememberValue,
-    setRememberValue,
-    handleRankUpdate
-}) => {
-    const [practicalBool, setPracticalBool] = useState(0);
-
-    const handleTimesUsed = (e) => {
-        setTimesUsed(Math.abs(differenceInWeeks(parseISO(item.timeOwned), parseISO(moment(new Date()).format("YYYY-MM-DD"))))*e.target.value);
-    };
+export const StepTwo = ({ handleRankChange }) => {
 
     return (
         <>
             <ModalBody>
                 <InputGroup display={"flex"} flexDir={"column"}>
-                    <HStack alignContent={"center"} marginTop={"2px"} mb={"8px"}>
-                        <Text>When did you acquire this item?</Text><Text fontSize={"xs"}>(approximate)</Text>
-                    </HStack>
-                    <Input onChange={handleInputChange} name="timeOwned" marginBottom={"2rem"} type="date" variant="outline" />
-                    <Text marginTop={"2px"} mb={"8px"}>Does this item have a practical use?</Text>
-                        <RadioGroup marginBottom={"2rem"} onChange={(e) => setPracticalBool(Boolean(e))} direction={"row"}>
-                            <Stack direction={"row"}>
-                                <Radio value={"true"}>Yes</Radio>
-                                <Radio value={""}>No</Radio>
-                            </Stack>
-                        </RadioGroup>
-                    { practicalBool 
-                        ?
-                        <>
-                            <Text marginTop={"2px"} mb={"8px"}>How many time a week do you use this item?</Text>
-                            <Input name="timesAWeek" type="number" onChange={e => handleTimesUsed(e)} marginBottom={"2rem"} variant="outline" />
-                        </>
-                        : ""
-                    }
-                    <Text marginTop={"2px"} mb={"8px"}>Do you even remember that you owned this?</Text>
-                    <RadioGroup marginBottom={"2rem"} onChange={setRememberValue} direction={"row"}>
-                        <Stack direction={"row"}>
-                            <Radio value={"0"}>Yes</Radio>
-                            <Radio value={"-2"}>No</Radio>
-                        </Stack>
-                    </RadioGroup>
-                    <Button marginBottom={"1rem"} width={"4rem"} onClick={handleRankUpdate}>Save</Button>
+                    <Text fontSize={"2xl"} mb="1rem">On a scale from 1 to 5...</Text>
+                    <Text marginTop={"2px"} mb={"8px"}>How sentimental is this item?</Text>
+                    <Select placeholder="Select" defaultValue="0" name="sentimental" variant="outline" mb="2rem" onChange={handleRankChange}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Select>
+                    <Text marginTop={"2px"} mb={"8px"}>How vital is this item to your work?</Text>
+                    <Select placeholder="Select" defaultValue="0" name="vitalToWork" variant="outline" mb="2rem" onChange={handleRankChange}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Select>
+                    <Text marginTop={"2px"} mb={"8px"}>How much would you miss this item?</Text>
+                    <Select placeholder="Select" defaultValue="0" name="miss" variant="outline" mb="2rem" onChange={handleRankChange}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Select>
+                    <Text marginTop={"2px"} mb={"8px"}>How important is this to you happiness?</Text>
+                    <Select placeholder="Select" defaultValue="0" name="happiness" variant="outline" mb="2rem" onChange={handleRankChange}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </Select>
                 </InputGroup>
             </ModalBody>
         </>

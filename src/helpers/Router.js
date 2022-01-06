@@ -7,15 +7,16 @@ import ProfilePage from "../views/ProfilePage";
 import { HomePage } from "../views/HomePage";
 import LoginPage from "../views/LoginPage";
 import { NotFound } from "../views/NotFound";
+import CategoryItemsPage from "../views/CategoryItemsPage";
 
-function Router({ user, setUser, phoroURL, userCategories, setUserCategories, userItems, setUserItems }) {
+function Router({ user, setUser, photoURL, userCategories, setUserCategories, userItems, setUserItems }) {
     return (
         <Routes>
             <Route path="/login" element={<LoginPage user={user} setUser={setUser} />} />
             <Route 
                 path="/"
                 element={
-                     <PrivateRoute>
+                    <PrivateRoute>
                         <HomePage 
                             user={user}
                             userCategories={userCategories}
@@ -37,13 +38,24 @@ function Router({ user, setUser, phoroURL, userCategories, setUserCategories, us
                     </PrivateRoute>
                 }>
             </Route>
+            <Route
+                path="/items/:categoryId"
+                element={
+                    <PrivateRoute>
+                        <CategoryItemsPage
+                            user={user}
+                            setUser={setUser}
+                            userItems={userItems}
+                            setUserItems={setUserItems} />
+                    </PrivateRoute>
+                }>
+            </Route>
             <Route 
                 path="/categories" 
                 element={
                     <PrivateRoute>
                         <CategoriesPage 
                             user={user}
-                            setUser={setUser}
                             userCategories={userCategories}
                             setUserCategories={setUserCategories} />
                     </PrivateRoute>
@@ -53,7 +65,11 @@ function Router({ user, setUser, phoroURL, userCategories, setUserCategories, us
                 path="/profile" 
                 element={
                     <PrivateRoute>
-                        <ProfilePage user={user} setUser={setUser} />
+                        <ProfilePage 
+                            user={user} 
+                            setUser={setUser} 
+                            photoURL={photoURL}
+                        />
                     </PrivateRoute>
                  }>
             </Route>

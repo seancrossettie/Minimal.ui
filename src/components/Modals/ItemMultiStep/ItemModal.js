@@ -1,36 +1,58 @@
 import { AddIcon } from '@chakra-ui/icons';
 import { Button, ButtonGroup, Flex, Modal, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createNewItem, getUserItems } from '../../../helpers/data/itemData';
 import { StepOne } from './StepOne';
 import { StepThree } from './StepThree';
 import { StepTwo } from './StepTwo';
 
 const ItemModal = ({ user, setUserItems, userCategories }) => {
+    // State of item to be created
     const [item, setItem] = useState({
         userId: user.userId,
+        categoryId: "",
         itemName: "",
-        itemDescription: "",
         timeOwned: "",
         quantity: 1,
         isDuplicate: false,
         isRemoved: false,
         necessityRank: 0
     });
-    const [timesUsed, setTimesUsed] = useState(0);
-    const [rememberValue, setRememberValue] = useState("0");
-    const [itemRank, setItemRank] = useState(0);
+    
+    // Modal Stepping API
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const steps = [{ label: "Step 1" }, { label: "Step 2" }, { label: "Step 3" }]
     const { nextStep, prevStep, reset, activeStep } = useSteps({
         initialStep: 0,
     });
-    const steps = [{ label: "Step 1" }, { label: "Step 2" }, { label: "Step 3" }]
 
-    const handleRankUpdate = (e) => {
-        setItemRank(itemRank => itemRank = timesUsed + Number(rememberValue));
+    // Handles stepping in modal
+    const handleStepButton = () => {
+        if (activeStep === 2) {
+            setItem((prevState) => ({
+                ...prevState,
+                necessityRank: Object.values(rank).reduce((a, b) => a + b, 0)
+            }));
+            createNewItem(item).then(() => getUserItems(user.userId).then(setUserItems));
+            onClose();
+            reset();
+        } else {
+            nextStep();
+        }
     };
 
+    // Handle isDisabled on modal button
+    const [isDisabled, setIsDisabled] = useState(true);
+    useEffect(() => {
+        if (userCategories.length < 1) {
+            setIsDisabled(true);
+        } else {
+            setIsDisabled(false);
+        };
+    }, [userCategories.length]);
+
+    // Changes the state of the item based on the form inputs
     const handleInputChange = (e) => {
         setItem((prevState) => ({
             ...prevState,
@@ -38,20 +60,18 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
         }));
     };
 
-    const handleStepButton = () => {
-        if (activeStep === 2) {
-            createNewItem(item).then(() => getUserItems(user.userId).then(setUserItems));
-            onClose();
-            reset();
-        } else {
-            nextStep();
-            
-        }
+    // Change the state of the item rank based on form inputs
+    const [rank, setRank] = useState({});
+    const handleRankChange = (e) => {
+        setRank((prevState) => ({
+            ...prevState,
+            [e.target.name]: Number(e.target.value)
+        }));
     };
 
     return (
         <Flex width={"70%"}>
-            <Button isFullWidth={true} rightIcon={<AddIcon />} variant={"outline"} onClick={onOpen}>Add an Item</Button>
+            <Button isDisabled={isDisabled} isFullWidth={true} rightIcon={<AddIcon />} variant={"outline"} onClick={onOpen}>Add an Item</Button>
             <Modal isOpen={isOpen} size="xl" onClose={() => { onClose(); reset(); }}>
                 <ModalOverlay onClick={() => { onClose(); reset(); }} />
                 <ModalContent>
@@ -62,28 +82,24 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                             </Step>
                             ))}
                         </Steps>
-                        <Text marginTop={"1rem"}>Add a Category</Text>
+                        <Text marginTop={"1rem"}>Add an Item</Text>
                     </ModalHeader>
                     {activeStep === 0 
                         ? <StepOne 
-                            handleInputChange={handleInputChange} 
-                            item={item} 
-                            setItem={setItem} 
-                            userCategories={userCategories} 
+                                handleInputChange={handleInputChange} 
+                                item={item} 
+                                setItem={setItem} 
+                                userCategories={userCategories} 
                             />
-                        :""
+                        : ""
                     }
                     {activeStep === 1 
-                        ? <StepTwo 
+                        ? 
+                        <StepTwo 
                             handleInputChange={handleInputChange} 
-                            item={item} 
-                            itemRank={itemRank} 
-                            setItemRank={setItemRank} 
-                            timesUsed={timesUsed} 
-                            setTimesUsed={setTimesUsed}
-                            rememberValue={rememberValue}
-                            setRememberValue={setRememberValue} 
-                            handleRankUpdate={handleRankUpdate} />
+                            item={item}  
+                            handleRankChange={handleRankChange}
+                        />
                         : ""
                     }
                     {activeStep === 2
@@ -92,17 +108,13 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                     }
                     <ModalFooter>
                         <ButtonGroup isAttached variant={"outline"}>
-                            <Button 
-                                variant={"outline"}
-                                onClick={prevStep}
-                                isDisabled={activeStep === 0}
-                            >
+                            <Button variant={"outline"} onClick={prevStep} isDisabled={activeStep === 0}>
                                 Prev
                             </Button>
                             <Button variant="outline" color={"teal.400"} onClick={e => handleStepButton(e)}>
                                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
                             </Button>
-                            <Button onClick={() => console.warn(timesUsed)}>Test</Button>
+                            <Button onClick={() => console.warn(Object.values(rank).reduce((a, b) => a + b, 0))}>Test</Button>
                         </ButtonGroup>
                     </ModalFooter>
                 </ModalContent>
