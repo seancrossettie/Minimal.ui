@@ -21,6 +21,14 @@ const CategoriesList = ({ userCategories, setUserCategories, user, setUserItems 
                 </Button>
                 ))
             }
+            <Button
+                rightIcon={<ArrowForwardIcon />} 
+                width={"70%"} 
+                size={"lg"}
+                onClick={() => navigate(`/items/removed`)}
+            >
+                Removed Items
+            </Button>
             <CategoryModal 
                 user={user}
                 setUserCategories={setUserCategories}

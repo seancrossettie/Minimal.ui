@@ -20,8 +20,9 @@ const NavBar = ({ user, setUser, photoURL }) => {
             <Flex pos="fixed" top="1rem" right="1rem" align="center">
                 <Flex display={["none", "none", "flex", "flex"]}>
                     <Button variant="ghost" m={2} onClick={() => navigate('/')}>Home</Button>
-                    <Button variant="ghost" m={2} onClick={() => navigate('/items')}>Items</Button>
                     <Button variant="ghost" m={2} onClick={() => navigate('/categories')}>Categories</Button>
+                    <Button variant="ghost" m={2} onClick={() => navigate('/items')}>All Items</Button>
+                    <Button variant="ghost" m={2} onClick={() => navigate('/five-most-useless')}>5 Most Useless</Button>
                     { user
                         ? <>
                             <IconButton m={2} alignSelf="center" variant="ghost" borderRadius="full" onClick={() => navigate('/profile')}>

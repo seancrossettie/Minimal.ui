@@ -1,43 +1,35 @@
 import { InputGroup, ModalBody, Select, Text } from '@chakra-ui/react';
 import React from 'react'
 
-export const StepThree = ({ handleRankChange }) => {
+export const StepThree = ({ rank, handleRankChange }) => {
     return (
         <>
             <ModalBody>
                 <InputGroup display={"flex"} flexDir={"column"}>
-                    <Text fontSize={"2xl"} mb="1rem">On a scale from 1 to 5...</Text>
-                    <Text marginTop={"2px"} mb={"8px"}>How sentimental is this item?</Text>
-                    <Select placeholder="Select" defaultValue="0" name="play" variant="outline" mb="2rem" onChange={handleRankChange}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <Text fontSize={"2xl"} mb="1rem">Do you agree or disagree with the following statements?</Text>
+                    <Text marginTop={"2px"} mb={"8px"}>I couldn't live without this item.</Text>
+                    <Select placeholder=" " defaultValue={rank.couldntLive} name="couldntLive" variant="outline" mb="2rem" onChange={handleRankChange}>
+                        <option value="-2">Strongly Disagree</option>
+                        <option value="-1">Disagree</option>
+                        <option value="0">Neutral</option>
+                        <option value="1">Agree</option>
+                        <option value="2">Strongly Agree</option>
                     </Select>
-                    <Text marginTop={"2px"} mb={"8px"}>How vital is this item to your work?</Text>
-                    <Select placeholder="Select" defaultValue="0" name="eat" variant="outline" mb="2rem" onChange={handleRankChange}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <Text marginTop={"2px"} mb={"8px"}>This item is one of a kind.</Text>
+                    <Select placeholder=" " defaultValue={rank.oneOfaKind} name="oneOfaKind" variant="outline" mb="2rem" onChange={handleRankChange}>
+                        <option value="-2">Strongly Disagree</option>
+                        <option value="-1">Disagree</option>
+                        <option value="0">Neutral</option>
+                        <option value="1">Agree</option>
+                        <option value="2">Strongly Agree</option>
                     </Select>
-                    <Text marginTop={"2px"} mb={"8px"}>How much would you miss this item?</Text>
-                    <Select placeholder="Select" defaultValue="0" name="miss" variant="os" mb="2rem" onChange={handleRankChange}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </Select>
-                    <Text marginTop={"2px"} mb={"8px"}>How important is this to you happiness?</Text>
-                    <Select placeholder="Select" defaultValue="0" name="ha" variant="outline" mb="2rem" onChange={handleRankChange}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <Text marginTop={"2px"} mb={"8px"}></Text>
+                    <Select placeholder=" " name="sentimental" variant="outline" mb="2rem" onChange={handleRankChange}>
+                        <option value="-2">Strongly Disagree</option>
+                        <option value="-1">Disagree</option>
+                        <option value="0">Neutral</option>
+                        <option value="1">Agree</option>
+                        <option value="2">Strongly Agree</option>
                     </Select>
                 </InputGroup>
             </ModalBody>
