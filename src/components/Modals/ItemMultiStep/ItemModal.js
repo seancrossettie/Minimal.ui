@@ -61,7 +61,16 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
     };
 
     // Change the state of the item rank based on form inputs
-    const [rank, setRank] = useState({});
+    const [rank, setRank] = useState({
+        practical: 0,
+        vitalToWork: 0,
+        replace: 0,
+        happiness: 0,
+        sentimental: 0,
+        couldntLive: 0,
+        oneOfaKind: 0
+    });
+
     const handleRankChange = (e) => {
         setRank((prevState) => ({
             ...prevState,
@@ -95,15 +104,18 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                     }
                     {activeStep === 1 
                         ? 
-                        <StepTwo 
-                            handleInputChange={handleInputChange} 
-                            item={item}  
+                        <StepTwo
+                            rank={rank}
                             handleRankChange={handleRankChange}
                         />
                         : ""
                     }
                     {activeStep === 2
-                        ? <StepThree handleInputChange={handleInputChange} item={item} />
+                        ? 
+                        <StepThree
+                            rank={rank} 
+                            handleInputChange={handleInputChange} 
+                        />
                         : ""
                     }
                     <ModalFooter>
@@ -113,8 +125,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                             </Button>
                             <Button variant="outline" color={"teal.400"} onClick={e => handleStepButton(e)}>
                                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                            </Button>
-                            <Button onClick={() => console.warn(Object.values(rank).reduce((a, b) => a + b, 0))}>Test</Button>
+                            </Button>   
                         </ButtonGroup>
                     </ModalFooter>
                 </ModalContent>

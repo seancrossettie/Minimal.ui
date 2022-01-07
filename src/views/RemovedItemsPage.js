@@ -2,10 +2,10 @@ import { Flex, Table, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
 import { ItemCard } from "../components/Items/ItemCard";
 
-const ItemsPage = ({ user, userItems, setUserItems }) => {
+const RemovedItemsPage = ({ user, userItems, setUserItems }) => {
     return (
         <Flex flexDir={"column"} marginTop={["6rem"]} marginLeft={["2rem"]}>
-            <Text fontSize="6xl" marginBottom={"2rem"}>All Items</Text>
+            <Text fontSize="6xl" marginBottom={"2rem"}>Removed Items</Text>
             <Table>
                 <Thead>
                     <Tr>
@@ -14,11 +14,11 @@ const ItemsPage = ({ user, userItems, setUserItems }) => {
                         <Th>Owned Since</Th>
                         <Th>Quantity</Th>
                         <Th>Score</Th>
-                        <Th>Mark as Removed</Th>
+                        <Th>Delete</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {userItems.map((item) => (
+                    {userItems.filter(item =>  item.isRemoved === true).map((item) => (
                         <Tr key={item.itemId}>
                             <ItemCard 
                                 user={user}
@@ -34,4 +34,4 @@ const ItemsPage = ({ user, userItems, setUserItems }) => {
     );
 };
 
-export default ItemsPage;
+export default RemovedItemsPage;

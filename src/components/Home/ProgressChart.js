@@ -1,19 +1,30 @@
 import { Flex, Text } from '@chakra-ui/react'
-import { ChartDonut, ChartThemeColor } from '@patternfly/react-charts'
+import { ChartDonut, ChartThemeColor, ChartThemeVariant } from '@patternfly/react-charts'
 import React from 'react'
 
 export const ProgressChart = ({ totalItemsOwned, totalItemsRemoved }) => {
     return (
-        <Flex flexDir={"column"} align={"center"} height={["90%"]} width={["90%"]}>
-            <Text fontSize={["4xl", "6xl"]}>Progress</Text>
-            <ChartDonut
-                title={`${totalItemsOwned}`}
-                constrainToVisibleArea={true}
-                subTitle="Items"
-                data={[{x: "Owned", y: `${totalItemsOwned}`}, {x: "Removed", y: `${totalItemsRemoved}`}]}
-                labels={({ datum }) => `${datum.x} : ${datum.y}`}
-                themeColor={ChartThemeColor.multiUnordered}
-            />   
+        <Flex flexDir={"column"} align={["center"]}>
+        <Text fontSize={["4xl", "6xl"]}>Progress</Text>
+            <Text>Number of items: {totalItemsOwned}</Text>
+            <Flex width={"400px"} height={"500px"} >
+                <ChartDonut
+                    width={400}
+                    height={500}
+                    title={`${totalItemsRemoved}`}
+                    constrainToVisibleArea={true}
+                    themeVariant={ChartThemeVariant.dark}
+                    themeColor={ChartThemeColor.dark}
+                    subTitle="Item Removed"
+                    data={[{x: "Owned", y: `${totalItemsOwned}`}, {x: "Removed", y: `${totalItemsRemoved}`}]}
+                    labels={({ datum }) => `${datum.x} : ${datum.y}`}
+                    legendPosition="bottom"
+                    legendData={[
+                        { name: "Owned" },
+                        { name : "Removed"}
+                    ]}
+                />   
+            </Flex>
         </Flex>
     )
 }

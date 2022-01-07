@@ -8,6 +8,8 @@ import { HomePage } from "../views/HomePage";
 import LoginPage from "../views/LoginPage";
 import { NotFound } from "../views/NotFound";
 import CategoryItemsPage from "../views/CategoryItemsPage";
+import RemovedItemsPage from "../views/RemovedItemsPage";
+import FiveMostUselessPage from "../views/FiveMostUselessPage";
 
 function Router({ user, setUser, photoURL, userCategories, setUserCategories, userItems, setUserItems }) {
     return (
@@ -38,11 +40,35 @@ function Router({ user, setUser, photoURL, userCategories, setUserCategories, us
                     </PrivateRoute>
                 }>
             </Route>
+            <Route 
+                path="/items/removed" 
+                element={
+                    <PrivateRoute>
+                        <RemovedItemsPage 
+                            user={user}
+                            setUser={setUser}
+                            userItems={userItems}
+                            setUserItems={setUserItems} />
+                    </PrivateRoute>
+                }>
+            </Route>
             <Route
                 path="/items/:categoryId"
                 element={
                     <PrivateRoute>
                         <CategoryItemsPage
+                            user={user}
+                            setUser={setUser}
+                            userItems={userItems}
+                            setUserItems={setUserItems} />
+                    </PrivateRoute>
+                }>
+            </Route>
+            <Route
+                path="/five-most-useless"
+                element={
+                    <PrivateRoute>
+                        <FiveMostUselessPage
                             user={user}
                             setUser={setUser}
                             userItems={userItems}

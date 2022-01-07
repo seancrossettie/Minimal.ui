@@ -20,6 +20,11 @@ function App() {
         authed.getIdToken().then((token) => sessionStorage.setItem("token", token));
         getUserByFirebaseKey(authed.multiFactor.user.uid).then(response => { 
           setUser(response[0]);
+          setUser((prevState) => ({
+            ...prevState,
+            totalItemsOwned: userItems.filter(item => item.isRemoved === false).length,
+            totalItemsRemoved: userItems.filter(item => item.isRemoved === true).length
+          }));
           getUserCategories(response[0].userId).then(setUserCategories);
           getUserItems(response[0].userId).then(setUserItems);
         });
@@ -28,7 +33,7 @@ function App() {
         setUser(false);
       }
     });
-  }, []);
+  }, [userItems]);
 
   return (
     <div className="App">

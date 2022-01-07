@@ -1,11 +1,13 @@
 import { Flex, Table, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ItemCard } from "../components/Items/ItemCard";
 
-const ItemsPage = ({ user, userItems, setUserItems }) => {
+const FiveMostUselessPage = ({ user, userItems, setUserItems }) => {
+    const [five, setFive] = useState([]);
+    useEffect(() => {})
     return (
         <Flex flexDir={"column"} marginTop={["6rem"]} marginLeft={["2rem"]}>
-            <Text fontSize="6xl" marginBottom={"2rem"}>All Items</Text>
+            <Text fontSize="6xl" marginBottom={"2rem"}>Five Most Useless Items</Text>
             <Table>
                 <Thead>
                     <Tr>
@@ -14,7 +16,7 @@ const ItemsPage = ({ user, userItems, setUserItems }) => {
                         <Th>Owned Since</Th>
                         <Th>Quantity</Th>
                         <Th>Score</Th>
-                        <Th>Mark as Removed</Th>
+                        <Th>Delete</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
@@ -34,4 +36,4 @@ const ItemsPage = ({ user, userItems, setUserItems }) => {
     );
 };
 
-export default ItemsPage;
+export default FiveMostUselessPage;
