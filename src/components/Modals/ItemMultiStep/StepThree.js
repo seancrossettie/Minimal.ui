@@ -23,13 +23,21 @@ export const StepThree = ({ rank, handleRankChange }) => {
                         <option value="1">Agree</option>
                         <option value="2">Strongly Agree</option>
                     </Select>
-                    <Text marginTop={"2px"} mb={"8px"}></Text>
-                    <Select placeholder=" " name="sentimental" variant="outline" mb="2rem" onChange={handleRankChange}>
+                    <Text marginTop={"2px"} mb={"8px"}>I use this item often.</Text>
+                    <Select placeholder=" " defaultValue={rank.often} name="often" variant="outline" mb="2rem" onChange={handleRankChange}>
                         <option value="-2">Strongly Disagree</option>
                         <option value="-1">Disagree</option>
                         <option value="0">Neutral</option>
                         <option value="1">Agree</option>
                         <option value="2">Strongly Agree</option>
+                    </Select>
+                    <Text marginTop={"2px"} mb={"8px"}>I sometimes forget I own this.</Text>
+                    <Select placeholder=" " defaultValue={rank.forget} name="forget" variant="outline" mb="2rem" onChange={handleRankChange}>
+                        <option value="2">Strongly Disagree</option>
+                        <option value="1">Disagree</option>
+                        <option value="0">Neutral</option>
+                        <option value="-1">Agree</option>
+                        <option value="-2">Strongly Agree</option>
                     </Select>
                 </InputGroup>
             </ModalBody>
