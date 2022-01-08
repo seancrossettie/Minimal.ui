@@ -1,6 +1,7 @@
 import { Flex, Table, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
 import { ItemCard } from "../components/Items/ItemCard";
+import PaginationBar from "../components/NavBar/PaginationBar";
 
 const ItemsPage = ({ user, userItems, setUserItems }) => {
     return (
@@ -30,6 +31,7 @@ const ItemsPage = ({ user, userItems, setUserItems }) => {
                     }
                 </Tbody>
             </Table>
+            <PaginationBar />
         </Flex>
     );
 };
