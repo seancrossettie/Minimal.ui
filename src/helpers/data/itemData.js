@@ -26,4 +26,9 @@ const deleteItem = (item) => new Promise((resolve, reject) => {
    .then(response => resolve(response.data)).catch(reject);
 });
 
-export { getAllItems, getUserItems, createNewItem, removeItem, deleteItem };
+const getFiveMostUseless = () => new Promise((resolve, reject) => {
+    axios.get(`${config.baseUrl}/api/items/getFiveMostUselessItems`)
+    .then(response => resolve(response.data)).catch(reject);
+})
+
+export { getAllItems, getUserItems, createNewItem, removeItem, deleteItem, getFiveMostUseless };

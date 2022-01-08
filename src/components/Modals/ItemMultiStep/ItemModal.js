@@ -30,10 +30,10 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
     // Handles stepping in modal
     const handleStepButton = () => {
         if (activeStep === 2) {
-            setItem((prevState) => ({
-                ...prevState,
-                necessityRank: Object.values(rank).reduce((a, b) => a + b, 0)
-            }));
+            // setItem((prevState) => ({
+            //     ...prevState,
+            //     necessityRank: Object.values(rank).reduce((a, b) => a + b, 0)
+            // }));
             createNewItem(item).then(() => getUserItems(user.userId).then(setUserItems));
             onClose();
             reset();
@@ -80,6 +80,13 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
         }));
     };
 
+    useEffect(() => {
+        setItem((prevState) => ({
+            ...prevState,
+            necessityRank: Object.values(rank).reduce((a, b) => a + b, 0)
+        }));
+    }, [rank]);
+
     return (
         <Flex width={"70%"}>
             <Button isDisabled={isDisabled} isFullWidth={true} rightIcon={<AddIcon />} variant={"outline"} onClick={onOpen}>Add an Item</Button>
@@ -116,7 +123,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                         ? 
                         <StepThree
                             rank={rank} 
-                            handleInputChange={handleInputChange} 
+                            handleRankChange={handleRankChange} 
                         />
                         : ""
                     }
@@ -128,7 +135,7 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                             <Button variant="outline" color={"teal.400"} onClick={e => handleStepButton(e)}>
                                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
                             </Button>   
-                            <Button onClick={() => console.warn(Object.values(rank).reduce((a, b) => a + b, 0))}>Test</Button>
+                            <Button onClick={() => console.warn(item)}>Test</Button>
                         </ButtonGroup>
                     </ModalFooter>
                 </ModalContent>
