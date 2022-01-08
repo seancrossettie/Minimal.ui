@@ -1,9 +1,15 @@
 import { Flex, Table, Tbody, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { ItemCard } from "../components/Items/ItemCard";
+import { getFiveMostUseless } from "../helpers/data/itemData";
 
-const FiveMostUselessPage = ({ user, userItems, setUserItems }) => {
+const FiveMostUselessPage = ({ user, setUserItems }) => {
     const [five, setFive] = useState([]);
+
+    useEffect(() => {
+        getFiveMostUseless().then(setFive);  
+    }, []);
+
     useEffect(() => {})
     return (
         <Flex flexDir={"column"} marginTop={["6rem"]} marginLeft={["2rem"]}>
@@ -16,11 +22,11 @@ const FiveMostUselessPage = ({ user, userItems, setUserItems }) => {
                         <Th>Owned Since</Th>
                         <Th>Quantity</Th>
                         <Th>Score</Th>
-                        <Th>Remove</Th>
+                        <Th>Mark as Removed</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {userItems.map((item) => (
+                    {five.map((item) => (
                         <Tr key={item.itemId}>
                             <ItemCard 
                                 user={user}

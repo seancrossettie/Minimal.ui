@@ -25,6 +25,7 @@ const CategoriesList = ({ userCategories, setUserCategories, user, setUserItems 
                 rightIcon={<ArrowForwardIcon />} 
                 width={"70%"} 
                 size={"lg"}
+                variant={"outline"}
                 onClick={() => navigate(`/items/removed`)}
             >
                 Removed Items
