@@ -43,7 +43,7 @@ const CategoryItemsPage = ({ user, userItems, setUserItems }) => {
                 <Tr>
                     <Th>Name</Th>
                     <Th>Category</Th>
-                    <Th>Time Owned (weeks)</Th>
+                    <Th>Owned Since</Th>
                     <Th>Quantity</Th>
                     <Th>Score</Th>
                     <Th>Remove</Th>
