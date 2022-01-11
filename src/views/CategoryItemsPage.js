@@ -46,7 +46,7 @@ const CategoryItemsPage = ({ user, userItems, setUserItems }) => {
                     <Th>Owned Since</Th>
                     <Th>Quantity</Th>
                     <Th>Score</Th>
-                    <Th>Remove</Th>
+                    <Th>Actions</Th>
                 </Tr>
             </Thead>
             <Tbody>

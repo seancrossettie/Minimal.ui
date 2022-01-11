@@ -22,7 +22,7 @@ const FiveMostUselessPage = ({ user, setUserItems }) => {
                         <Th>Owned Since</Th>
                         <Th>Quantity</Th>
                         <Th>Score</Th>
-                        <Th>Mark as Removed</Th>
+                        <Th>Actions</Th>
                     </Tr>
                 </Thead>
                 <Tbody>

@@ -15,7 +15,7 @@ const ItemsPage = ({ user, userItems, setUserItems }) => {
                         <Th>Owned Since</Th>
                         <Th>Quantity</Th>
                         <Th>Score</Th>
-                        <Th>Mark as Removed</Th>
+                        <Th>Actions</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
@@ -31,7 +31,6 @@ const ItemsPage = ({ user, userItems, setUserItems }) => {
                     }
                 </Tbody>
             </Table>
-            <PaginationBar />
         </Flex>
     );
 };

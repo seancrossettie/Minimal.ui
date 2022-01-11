@@ -6,7 +6,8 @@ export const ProgressChart = ({ totalItemsOwned, totalItemsRemoved }) => {
     return (
         <Flex flexDir={"column"} align={["center"]}>
         <Text fontSize={["4xl", "6xl"]}>Progress</Text>
-            <Text>Number of items: {totalItemsOwned}</Text>
+            <Text>Total number of items: {totalItemsOwned}</Text>
+            <Text>Number of items removed: {totalItemsRemoved}</Text>
             <Flex width={"400px"} height={"500px"} >
                 <ChartDonut
                     width={400}
