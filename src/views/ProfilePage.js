@@ -15,7 +15,6 @@ const ProfilePage = ({ user, setUser, photoURL }) => {
             <Text fontSize={"2xl"} mb={"0.5rem"}>User Tier: {user.userGoalTier}</Text>
             <Text fontSize={"2xl"} mb={"0.5rem"}>{user.email}</Text>
             <Text mb={"0.5rem"}>Joined on {moment(user.createdAt).format("MM/DD/YYYY")}</Text>
-            <Button variant={"ghost"}>Update</Button>
         </Flex>
     );
 };

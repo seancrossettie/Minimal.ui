@@ -135,7 +135,6 @@ const ItemModal = ({ user, setUserItems, userCategories }) => {
                             <Button variant="outline" color={"teal.400"} onClick={e => handleStepButton(e)}>
                                 {activeStep === steps.length - 1 ? "Finish" : "Next"}
                             </Button>   
-                            <Button onClick={() => console.warn(item)}>Test</Button>
                         </ButtonGroup>
                     </ModalFooter>
                 </ModalContent>
