@@ -6,6 +6,9 @@ Minimal is an app that helps users remove clutter from their lives and move towa
 ## Deployed Site
 https://minimal-app.netlify.app
 
+## Backend Repo
+https://github.com/seancrossettie/Minimal.db
+
 ## ERD
 https://dbdiagram.io/d/6111cb572ecb310fc3c43f74
 
